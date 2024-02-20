@@ -1,25 +1,79 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-@import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
-
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+ body{
+  display: flex;
+  width: 1440px;
+  padding: 36px 0px 364px 0px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
+
+
+div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 36px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+  }
+
+
+button {
+font-family: "Montserrat", sans-serif;
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: 0.04em;
+color: #fff;
+border-radius: 8px;
+padding: 8px 16px;
+width: 91px;
+height: 40px;
+background: #4e75ff;
+}
+
+input {
+width: 272px;
+height: 40px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 34px;
+  justify-content: center;
+}
+
+
+.gallery-item {
+  list-style: none;
+  border: 1px solid #000;
+  font-family: "Montserrat", sans-serif;
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.04em;
+}
+
+.gallery-image {
+  width: 360px;
+  height: 160px;
+  border-bottom: 1px solid #000;
+} 
+
+
+/* @keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
