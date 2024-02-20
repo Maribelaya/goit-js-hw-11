@@ -11,44 +11,51 @@ const galleryContainer = document.querySelector('.gallery');
 //Подія відправлення форми
 form.addEventListener('submit', event => {
     event.preventDefault();
+    // showLoader()
     const searchValue = searchInput.value;
     getImages(searchValue);
 });
 
 //Пошук зображень
 function getImages(searchValue){
-    const apiKey = '42469788-7d7013196b534fb1bad6f4ac3';
+    const apiKey = "42469788-7d7013196b534fb1bad6f4ac3";
     const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchValue}&image_type=photo&orientation=horizontal&safesearch=true`;
 
     fetch(url)
     .then(response => {
-        if (!response.ok) {
-        throw new Error(response.status);
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(response.status);
         }
-        return response.json();
+        
+       
     })
 
-    .then(data => { //Успішне викоання запиту
-        if (data.hits.length === 0) { //Відстуні зображення
+    .then(data => { //Успішне виконання запиту
+        if (data.hits.length === 0) { //Відcутні зображення
             iziToast.error({
             position: 'topRight',
-            transitionIn: "fadeInLeft",
+            timeout: 2000,
+            transitionIn: 'fadeInUp',
             message: "Sorry, there are no images matching your search query. Please try again!",
-            });
+        });
         }
-        else {  //Отримано зображенн
+        else {  //Отримано зображення
             const images = data.hits.
             map(data => {
                 return `
                 <li class="gallery-item"><a href="${data.largeImageURL}">
                 <img class="gallery-image" src="${data.webformatURL}" alt="${data.tags}"></a>
-
-                <p><b>Likes: </b>${data.likes}</p>
-                <p><b>Views: </b>${data.views}</p>
-                <p><b>Comments: </b>${data.comments}</p>
-                <p><b>Downloads: </b>${data.downloads}</p>
+                <ul class="gallery-image-data">
+                <li class="data-quantity"><b>Likes </b>${data.likes}</li>
+                <li class="data-quantity"><b>Views </b>${data.views}</li>
+                <li class="data-quantity"><b>Comments </b>${data.comments}</li>
+                <li class="data-quantity"><b>Downloads </b>${data.downloads}</li>
+                </ul>
                 </li>`;
             }).join('');
+
             
             //Відображення на сторінці
             galleryContainer.insertAdjacentHTML("beforeend", images);

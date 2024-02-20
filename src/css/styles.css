@@ -1,78 +1,85 @@
- body{
-  display: flex;
-  width: 1440px;
-  padding: 36px 0px 364px 0px;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-}
+ body {
+   width: 1440px;
+   padding: 36px 0px 364px 0px;
+   flex-direction: column;
+   align-items: center;
+   gap: 32px;
+ }
 
+ div {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   justify-content: center;
+   align-items: center;
+   margin-top: 36px;
+ }
 
-div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 36px;
-}
+ form {
+   display: flex;
+   gap: 10px;
+   justify-content: center;
+   align-items: center;
+ }
 
-form {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-  }
+ button {
+   font-family: "Montserrat", sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 1.5;
+   letter-spacing: 0.04em;
+   color: #fff;
+   border-radius: 8px;
+   padding: 8px 16px;
+   width: 91px;
+   height: 40px;
+   background: #4e75ff;
+ }
 
+ input {
+   width: 272px;
+   height: 40px;
+ }
 
-button {
-font-family: "Montserrat", sans-serif;
-font-weight: 500;
-font-size: 16px;
-line-height: 1.5;
-letter-spacing: 0.04em;
-color: #fff;
-border-radius: 8px;
-padding: 8px 16px;
-width: 91px;
-height: 40px;
-background: #4e75ff;
-}
+ .gallery {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 34px;
+   justify-content: center;
+ }
 
-input {
-width: 272px;
-height: 40px;
-}
+ .gallery-item {
+   list-style: none;
+   border: 1px solid #000;
+   font-family: "Montserrat", sans-serif;
+   font-weight: 400;
+   font-size: 12px;
+   letter-spacing: 0.04em;
+ }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 34px;
-  justify-content: center;
-}
+ .gallery-image {
+   width: 360px;
+   height: 160px;
+   border-bottom: 1px solid #000;
+ }
 
+ @keyframes rotation {
+   0% {
+     transform: rotate(0deg);
+   }
 
-.gallery-item {
-  list-style: none;
-  border: 1px solid #000;
-  font-family: "Montserrat", sans-serif;
-font-weight: 400;
-font-size: 12px;
-letter-spacing: 0.04em;
-}
+   100% {
+     transform: rotate(360deg);
+   }
+ }
 
-.gallery-image {
-  width: 360px;
-  height: 160px;
-  border-bottom: 1px solid #000;
-} 
+ .gallery-image-data {
+   display: flex;
+   gap: 10px;
+ }
 
-
-/* @keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} */
+ .data-quantity {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
