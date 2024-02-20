@@ -1,0 +1,10 @@
+import{i as a,S as c}from"./assets/vendor-5b791d57.js";(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const r of t.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&o(r)}).observe(document,{childList:!0,subtree:!0});function n(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function o(e){if(e.ep)return;e.ep=!0;const t=n(e);fetch(e.href,t)}})();const l=document.querySelector("form"),u=document.querySelector("input"),p=document.querySelector(".gallery");l.addEventListener("submit",s=>{s.preventDefault();const i=u.value;f(i)});function f(s){const n=`https://pixabay.com/api/?key=42469788-7d7013196b534fb1bad6f4ac3&q=${s}&image_type=photo&orientation=horizontal&safesearch=true`;fetch(n).then(o=>{if(!o.ok)throw new Error(o.status);return o.json()}).then(o=>{if(o.hits.length===0)a.error({position:"topRight",transitionIn:"fadeInLeft",message:"Sorry, there are no images matching your search query. Please try again!"});else{const e=o.hits.map(r=>`
+                <li class="gallery-item"><a href="${r.largeImageURL}">
+                <img class="gallery-image" src="${r.webformatURL}" alt="${r.tags}"></a>
+
+                <p><b>Likes: </b>${r.likes}</p>
+                <p><b>Views: </b>${r.views}</p>
+                <p><b>Comments: </b>${r.comments}</p>
+                <p><b>Downloads: </b>${r.downloads}</p>
+                </li>`).join("");p.insertAdjacentHTML("beforeend",e),new c(".gallery a",{captions:!0,captionType:"attr",captionsData:"alt",captionPosition:"bottom",fadeSpeed:150,captionSelector:"img",captionDelay:250}).on("show.simplelightbox").refresh(),hideLoader()}}).catch(o=>{console.log(o)})}
+//# sourceMappingURL=commonHelpers.js.map
