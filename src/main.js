@@ -37,10 +37,12 @@ function getImages(searchValue){
             });
         }
         else {  //Отримано зображенн
-            const images = data.hits.map(data => {
+            const images = data.hits.
+            map(data => {
                 return `
                 <li class="gallery-item"><a href="${data.largeImageURL}">
                 <img class="gallery-image" src="${data.webformatURL}" alt="${data.tags}"></a>
+
                 <p><b>Likes: </b>${data.likes}</p>
                 <p><b>Views: </b>${data.views}</p>
                 <p><b>Comments: </b>${data.comments}</p>
