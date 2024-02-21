@@ -10,21 +10,22 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 
 const form = document.querySelector ('form');
-const textForm = document.querySelector ('.textForm')
 const searchInput = document.querySelector ('input');
 const galleryContainer = document.querySelector('.gallery');
+const loaderElem = document.querySelector('.loader-container');
 
 //Подія відправлення форми
 form.addEventListener('submit', event => {
     event.preventDefault();
-   searchInput.innerHTML = '';
     const searchValue = searchInput.value;
+    searchInput.value = '';
+    galleryContainer.innerHTML='';
     getImages(searchValue);
 });
 
-
 //Пошук зображень
 function getImages(searchValue){
+    showLoader(); //Показати лоадер
     const apiKey = "42469788-7d7013196b534fb1bad6f4ac3";
     const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchValue}&image_type=photo&orientation=horizontal&safesearch=true`;
 
@@ -42,8 +43,7 @@ function getImages(searchValue){
         if (data.hits.length === 0) { //Відcутні зображення
             iziToast.error({
             timeout: 1000,
-            progressBar: false,
-            transitionIn: 'fadeInUp',
+            // transitionIn: 'fadeInUp',
             message: "Sorry, there are no images matching your search query. Please try again!",
             position: 'topRight',
         });
@@ -65,7 +65,7 @@ function getImages(searchValue){
 
             
             //Відображення на сторінці
-            galleryContainer.insertAdjacentHTML("beforeend", images);
+        galleryContainer.insertAdjacentHTML("beforeend", images);
         const lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
         captionType: 'attr',
@@ -76,11 +76,25 @@ function getImages(searchValue){
         captionDelay: 250,
         });
         lightbox.on('show.simplelightbox').refresh();
-        hideLoader();
-      
         }
     })
     .catch(error => {
         console.log(error); //Помилка виконання запиту
+    })
+    .finally(() => {
+        hideLoader(); //Сховати loader
     });
 }
+
+function showLoader() {
+    loaderElem.style.display = 'flex';
+}
+
+function hideLoader() {
+    loaderElem.style.display = 'none';
+}
+
+//Після завантаження DOM - сховати loader
+document.addEventListener('DOMContentLoaded', event => {
+    hideLoader();
+});
