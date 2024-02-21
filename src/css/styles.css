@@ -71,7 +71,7 @@
    100% {
      transform: rotate(360deg);
    }
- }
+ } 
 
  .gallery-image-data {
    display: flex;
