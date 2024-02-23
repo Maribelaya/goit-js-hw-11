@@ -9,10 +9,23 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 
+
+
 const form = document.querySelector ('form');
 const searchInput = document.querySelector ('input');
 const galleryContainer = document.querySelector('.gallery');
 const loaderElem = document.querySelector('.loader-container');
+
+const lightbox = new SimpleLightbox('.gallery a', {
+    aptions: true,
+    captionType: 'attr',
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    fadeSpeed: 150,
+    captionSelector: "img",
+    captionDelay: 250,
+    });       
+    lightbox.on('show.simplelightbox');
 
 //Подія відправлення форми
 form.addEventListener('submit', event => {
@@ -66,16 +79,9 @@ function getImages(searchValue){
             
             //Відображення на сторінці
         galleryContainer.insertAdjacentHTML("beforeend", images);
-        const lightbox = new SimpleLightbox('.gallery a', {
-        captions: true,
-        captionType: 'attr',
-        captionsData: 'alt',
-        captionPosition: 'bottom',
-        fadeSpeed: 150,
-        captionSelector: "img",
-        captionDelay: 250,
-        });
-        lightbox.on('show.simplelightbox').refresh();
+
+
+        lightbox.refresh();
         }
     })
     .catch(error => {
@@ -93,8 +99,3 @@ function showLoader() {
 function hideLoader() {
     loaderElem.style.display = 'none';
 }
-
-//Після завантаження DOM - сховати loader
-document.addEventListener('DOMContentLoaded', event => {
-    hideLoader();
-});
